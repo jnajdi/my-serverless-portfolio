@@ -1,2 +1,2 @@
-# my-serverless-portfolio
-This is my Serverless portfolio with AWS and React
+# My Serverless Portfolio
+This is my Serverless portfolio. It uses AWS and React. 
