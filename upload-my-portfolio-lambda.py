@@ -37,13 +37,12 @@ def lambda_handler(event, context):
                 portfolio_bucket.upload_fileobj(obj, nm, ExtraArgs={'ContentType': mimetypes.guess_type(nm)[0]})
                 portfolio_bucket.Object(nm).Acl().put(ACL='public-read')
 
-        print "Done"
-
         topic.publish(Subject="Portfolio Deployed", Message="Portfolio deployed successfully!")
 
         if job:
             codepipeline = boto3.client('codepipeline')
             codepipeline.put_job_success_result(jobId=job["id"])
+        print "Job Done"
 
     except:
         topic.publish(Subject="Portfolio Deploy Failed", Message="The portfolio was not deployed successfully!")
